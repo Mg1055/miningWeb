@@ -1,4 +1,5 @@
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Packages>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// const { urlencoded } = require("express");
 const express = require("express");
 const app = express();
 const path=require('path')
@@ -7,7 +8,9 @@ const path=require('path')
 
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Middleware>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+app.set("view engine","ejs")
 app.set("views", path.join(__dirname, "views"));
+app.use(express.urlencoded({extended:true}));
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Middleware>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
@@ -20,15 +23,15 @@ app.get("/", (req, res) => {
 });
 
 app.get("/students", (req, res) => {
-  res.send("this is student section!!");
+  res.render("student")
 });
 
 app.get("/faculty", (req, res) => {
-  res.send("this is faculty section");
+  res.render("faculty")
 });
 
 app.get("/events", (req, res) => {
-  res.send("this is event section");
+  res.render("events")
 });
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<ROUTES>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
